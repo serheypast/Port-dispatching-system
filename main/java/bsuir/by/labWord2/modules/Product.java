@@ -8,7 +8,11 @@ public enum Product {
     FISH("Fish"),
     MEAT("Meat"),
     OIL("Oil"),
-    BREAD("Bread");
+    BREAD("Bread"),
+    ICE_CREAM("Ice-cream"),
+    WATER("WATER"),
+    SUGAR("Sugar"),
+    CAKE("Cake");
 
 
 

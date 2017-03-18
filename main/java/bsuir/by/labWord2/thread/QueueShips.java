@@ -1,9 +1,8 @@
 package bsuir.by.labWord2.thread;
 
-import bsuir.by.labWord2.modules.Ship;
+import bsuir.by.labWord2.modules.Ship.Ship;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 
 /**
@@ -30,6 +29,7 @@ public class QueueShips {
     }
 
     public void addShip(Ship ship){
-       ships.put(ship);
+
+        ships.put(ship);
     }
 }

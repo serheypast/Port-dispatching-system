@@ -1,6 +1,8 @@
-package bsuir.by.labWord2.modules;
+package bsuir.by.labWord2.modules.Ship;
 
-import java.util.ArrayList;
+import bsuir.by.labWord2.modules.Product;
+import bsuir.by.labWord2.modules.Ship.Ship;
+
 import java.util.LinkedList;
 
 /**

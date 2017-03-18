@@ -15,7 +15,16 @@ public class MainForm extends ApplicationWindow {
     private Table table;
     private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
     private Table table_1;
+    private TableColumn tblclmnName;
+    private TableColumn tblclmnNewColumn;
+    private TableColumn tblclmnSomeData;
+    private ListViewer listViewer;
+    private ListViewer listViewer_1;
+    private ListViewer listViewer_2;
+    private Button btnNewButton;
+    TableColumn tblclmnQuantity;
 
+    private TableColumn tblclmnProduct;
     /**
      * Create the application window.
      */
@@ -40,28 +49,28 @@ public class MainForm extends ApplicationWindow {
         table.setHeaderVisible(true);
         table.setLinesVisible(true);
 
-        TableColumn tblclmnName = new TableColumn(table, SWT.NONE);
+        tblclmnName = new TableColumn(table, SWT.NONE);
         tblclmnName.setWidth(100);
         tblclmnName.setText("Name");
 
-        TableColumn tblclmnNewColumn = new TableColumn(table, SWT.NONE);
+        tblclmnNewColumn = new TableColumn(table, SWT.NONE);
         tblclmnNewColumn.setWidth(100);
         tblclmnNewColumn.setText("Operation");
 
-        TableColumn tblclmnSomeData = new TableColumn(table, SWT.NONE);
+        tblclmnSomeData = new TableColumn(table, SWT.NONE);
         tblclmnSomeData.setWidth(307);
         tblclmnSomeData.setText("Some data");
 
-        ListViewer listViewer = new ListViewer(container, SWT.BORDER | SWT.V_SCROLL);
+        listViewer = new ListViewer(container, SWT.BORDER | SWT.V_SCROLL);
         List list = listViewer.getList();
         list.setBounds(203, 25, 132, 81);
 
-        ListViewer listViewer_1 = new ListViewer(container, SWT.BORDER | SWT.V_SCROLL);
+        listViewer_1 = new ListViewer(container, SWT.BORDER | SWT.V_SCROLL);
         List list_1 = listViewer_1.getList();
         list_1.setBounds(393, 25, 132, 81);
 
 
-        ListViewer listViewer_2 = new ListViewer(container, SWT.BORDER | SWT.V_SCROLL);
+        listViewer_2 = new ListViewer(container, SWT.BORDER | SWT.V_SCROLL);
         List list_2 = listViewer_2.getList();
         list_2.setBounds(585, 25, 132, 81);
 
@@ -77,10 +86,18 @@ public class MainForm extends ApplicationWindow {
         formToolkit.adapt(lblNewLabel, true, true);
         lblNewLabel.setText("Портовая диспетчерская система");
 
-        Button btnNewButton = new Button(container, SWT.NONE);
+        btnNewButton = new Button(container, SWT.NONE);
         btnNewButton.setBounds(10, 385, 158, 37);
         formToolkit.adapt(btnNewButton, true, true);
         btnNewButton.setText("New Button");
+        btnNewButton.addListener(SWT.Selection, new Listener()
+        {
+            @Override
+            public void handleEvent(Event event)
+            {
+                System.out.println("SWT.Selection");
+            }
+        });
 
         table_1 = new Table(container, SWT.BORDER | SWT.FULL_SELECTION);
         table_1.setBounds(10, 135, 158, 244);
@@ -89,11 +106,11 @@ public class MainForm extends ApplicationWindow {
         table_1.setHeaderVisible(true);
         table_1.setLinesVisible(true);
 
-        TableColumn tblclmnProduct = new TableColumn(table_1, SWT.NONE);
+        tblclmnProduct = new TableColumn(table_1, SWT.NONE);
         tblclmnProduct.setText("product");
         tblclmnProduct.setWidth(75);
 
-        TableColumn tblclmnQuantity = new TableColumn(table_1, SWT.NONE);
+        tblclmnQuantity = new TableColumn(table_1, SWT.NONE);
         tblclmnQuantity.setWidth(77);
         tblclmnQuantity.setText("Quantity");
         return container;

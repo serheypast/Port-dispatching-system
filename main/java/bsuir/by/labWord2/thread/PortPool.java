@@ -1,10 +1,14 @@
 package bsuir.by.labWord2.thread;
 
-import bsuir.by.labWord2.modules.Ship;
+import bsuir.by.labWord2.modules.Ship.Ship;
+import bsuir.by.labWord2.modules.Stock.Stock;
 
-import java.util.LinkedList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Created by Сергей on 18.03.2017.
@@ -12,9 +16,16 @@ import java.util.concurrent.TimeUnit;
 public class PortPool{
     private final static int POOL_SIZE = 3; // размер пула
     private final Semaphore semaphore = new Semaphore(POOL_SIZE, true);
-    private QueueShips queueShips;
+    private volatile QueueShips queueShips;
+    private volatile Stock stock;
+
     public PortPool() {
 
+    }
+
+    public PortPool(QueueShips queueShips, Stock stock) {
+        this.queueShips = queueShips;
+        this.stock = stock;
     }
 
     public PortPool(QueueShips queueShips) {
@@ -37,10 +48,19 @@ public class PortPool{
     }
 
     public void startPier(){
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         for(int i  = 0; i < POOL_SIZE; i++){
-            Pier pier = new Pier(this);
+
+            Pier pier = new Pier(this,stock);
             pier.setPierName("pier №" + Integer.toString(i + 1));
-            pier.start();
+            service.scheduleAtFixedRate(pier,0,10,TimeUnit.SECONDS);
         }
+        System.out.println(stock.getProducts());
+        try {
+            sleep(13000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(stock.getProducts());
     }
 }
