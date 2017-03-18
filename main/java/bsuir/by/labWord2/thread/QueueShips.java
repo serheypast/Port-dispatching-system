@@ -11,13 +11,13 @@ import java.util.concurrent.PriorityBlockingQueue;
  */
 public class QueueShips {
    // private List<Ship> ships;
-    PriorityBlockingQueue<Ship> ships;
+    PriorityBlockingQueue<Ship> ships = new PriorityBlockingQueue<Ship>();
     public QueueShips(  PriorityBlockingQueue<Ship> ships) {
         this.ships = ships;
     }
 
     public QueueShips() {
-        PriorityBlockingQueue<Ship> ships = new PriorityBlockingQueue<Ship>();
+
     }
 
     private ArrayList<Ship> getShipList(){

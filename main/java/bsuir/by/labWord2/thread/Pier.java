@@ -7,9 +7,19 @@ import bsuir.by.labWord2.modules.Ship;
  */
 public class Pier extends Thread {
     private PortPool shipPortPool;
-
+    private String name;
     private boolean free;
     private Ship ship;
+
+
+    public String getPierName() {
+        return name;
+    }
+
+
+    public void setPierName(String name) {
+        this.name = name;
+    }
 
     public Pier(PortPool shipPortPool) {
         this.shipPortPool = shipPortPool;
@@ -24,13 +34,15 @@ public class Pier extends Thread {
             Ship ship = null;
             try {
                 ship = shipPortPool.getResource(10000);
-
+                System.out.println(ship + " In pier name: " + name);
+                sleep(10000);
             } catch (ResourсeException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
 
-            System.out.println(ship.getName());
             shipPortPool.returnResource();
         }while(true);
     }

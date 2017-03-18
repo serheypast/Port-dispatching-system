@@ -35,4 +35,12 @@ public class PortPool{
     public void returnResource() {
         semaphore.release();
     }
+
+    public void startPier(){
+        for(int i  = 0; i < POOL_SIZE; i++){
+            Pier pier = new Pier(this);
+            pier.setPierName("pier №" + Integer.toString(i + 1));
+            pier.start();
+        }
+    }
 }

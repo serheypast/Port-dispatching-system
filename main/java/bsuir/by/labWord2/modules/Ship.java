@@ -2,6 +2,7 @@ package bsuir.by.labWord2.modules;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 /**
  * Created by Сергей on 17.03.2017.
@@ -9,8 +10,9 @@ import java.util.Comparator;
 public class Ship implements Comparable<Ship>{
     private String name;
     private int time;
-    private ArrayList<String> products;
+    private LinkedList<String> products;
     private int priority;
+
 
     public int getPriority() {
         return priority;
@@ -36,16 +38,16 @@ public class Ship implements Comparable<Ship>{
         this.time = time;
     }
 
-    public ArrayList<String> getProducts() {
+    public LinkedList<String> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<String> products) {
+    public void setProducts(LinkedList<String> products) {
         this.products = products;
     }
 
 
-    public Ship(String name, int time, ArrayList<String> products, int priority) {
+    public Ship(String name, int time, LinkedList<String> products, int priority) {
         this.name = name;
         this.time = time;
         this.products = products;
@@ -56,6 +58,15 @@ public class Ship implements Comparable<Ship>{
 
     }
 
+    @Override
+    public String toString() {
+        return "Ship{" +
+                "name='" + name + '\'' +
+                ", time=" + time +
+                ", products=" + products +
+                ", priority=" + priority +
+                "}\n";
+    }
 
     public int compareTo(Ship o) {
         if(o.getPriority() > priority){
