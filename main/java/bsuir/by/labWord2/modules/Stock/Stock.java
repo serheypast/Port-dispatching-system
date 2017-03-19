@@ -2,6 +2,7 @@ package bsuir.by.labWord2.modules.Stock;
 
 import bsuir.by.labWord2.modules.Ship.Ship;
 
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -18,8 +19,8 @@ public class Stock {
         products = InitializerStock.getRandomProducts();
     }
 
-    public void putProductInStock(String product){
-        int quantityOfProduct = products.get(product) + 1;
+    public void putProductInStock(String product,int size){
+        int quantityOfProduct = products.get(product) + size;
         products.put(product,quantityOfProduct);
     }
 
@@ -32,9 +33,9 @@ public class Stock {
 
 
     public void putShipInStock(Ship ship){
-        for (String product: ship.getProducts()
+        for (String product: ship.getProducts().keySet()
              ) {
-            putProductInStock(product);
+            putProductInStock(product,ship.getProducts().get(product));
         }
     }
     public ConcurrentHashMap<String,Integer> getProducts() {

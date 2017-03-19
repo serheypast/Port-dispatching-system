@@ -8,7 +8,7 @@ import bsuir.by.labWord2.modules.Stock.Stock;
  */
 public class Pier extends Thread {
     private PortPool shipPortPool;
-    private String name;
+    private int id;
     private Stock stock;
 
     public Pier(PortPool shipPortPool, Stock stock) {
@@ -16,13 +16,13 @@ public class Pier extends Thread {
         this.stock = stock;
     }
 
-    public String getPierName() {
-        return name;
+    public int getPierName() {
+        return id;
     }
 
 
-    public void setPierName(String name) {
-        this.name = name;
+    public void setPierName(int name) {
+        this.id = name;
     }
 
     public Pier(PortPool shipPortPool) {
@@ -34,14 +34,33 @@ public class Pier extends Thread {
 
     @Override
     public void run() {
-        Ship ship = null;
         try {
-            ship = shipPortPool.getResource(10000);
-            stock.putShipInStock(ship);
-            System.out.println(ship + " In pier name: " + name);
-        } catch (ResourсeException e) {
+            sleep(10000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        shipPortPool.returnResource();
+       Ship ship = null;
+        try {
+            do {
+                this.setName("Pier");
+                System.out.println(this.getName() + "tut");
+                ship = shipPortPool.getResource(10000);
+                int sleepTime = ship.getProducts().size() * 700;
+                System.out.println(ship + " In pier id: " + id);
+                stock.putShipInStock(ship);
+                shipPortPool.updateForm.addShipInPier(ship, id);
+                shipPortPool.updateForm.addProductsInStock(ship, id);
+                shipPortPool.updateForm.removeShipFromQueue(ship, id);
+                sleep(sleepTime);
+                shipPortPool.returnResource();
+
+            }while (true);
+            } catch(ResourсeException e){
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

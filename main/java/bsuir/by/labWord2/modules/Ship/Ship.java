@@ -1,5 +1,6 @@
 package bsuir.by.labWord2.modules.Ship;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.LinkedList;
 public class Ship implements Comparable<Ship>{
     private String name;
     private int time;
-    private LinkedList<String> products;
+    private HashMap<String,Integer> products;
     private int priority;
 
 
@@ -36,16 +37,16 @@ public class Ship implements Comparable<Ship>{
         this.time = time;
     }
 
-    public LinkedList<String> getProducts() {
+    public HashMap<String,Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(LinkedList<String> products) {
+    public void setProducts(HashMap<String,Integer> products) {
         this.products = products;
     }
 
 
-    public Ship(String name, int time, LinkedList<String> products, int priority) {
+    public Ship(String name, int time, HashMap<String,Integer> products, int priority) {
         this.name = name;
         this.time = time;
         this.products = products;
@@ -67,7 +68,7 @@ public class Ship implements Comparable<Ship>{
     }
 
     public int compareTo(Ship o) {
-        if(o.getPriority() > priority){
+        if(o.getPriority() <= priority){
             return 1;
         }
         else{

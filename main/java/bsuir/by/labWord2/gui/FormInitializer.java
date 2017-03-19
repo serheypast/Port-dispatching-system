@@ -6,6 +6,7 @@ import bsuir.by.labWord2.modules.Stock.Stock;
 import bsuir.by.labWord2.thread.QueueShips;
 import javafx.scene.control.Tab;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.widgets.TableItem;
 
 /**
@@ -41,6 +42,7 @@ public class FormInitializer {
     }
 
     public void setTableQueue(){
+
         for (Ship ship: ships.getShipList()
              ) {
             TableItem tableItem = new TableItem(mainForm.table,SWT.NONE);
@@ -50,6 +52,7 @@ public class FormInitializer {
                     ship.getProducts().toString()
             });
         }
+
     }
 }
 

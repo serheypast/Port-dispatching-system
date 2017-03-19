@@ -3,6 +3,7 @@ package bsuir.by.labWord2.modules.Ship;
 import bsuir.by.labWord2.modules.Product;
 import bsuir.by.labWord2.modules.Ship.Ship;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -20,7 +21,7 @@ public class InitializerShip {
         Ship ship = new Ship();
         ship.setName(randomName());
         ship.setTime(DEFAULT_TIME);
-        ship.setPriority(DEFAULT_PRIORITY);
+        ship.setPriority(DEFAULT_PRIORITY + (int)(Math.random()*10));
         ship.setProducts(randomProducts());
         return ship;
     }
@@ -34,13 +35,18 @@ public class InitializerShip {
         return new String(randString);
     }
 
-    private static LinkedList<String> randomProducts(){
-        LinkedList<String> linkedList = new LinkedList<String>();
+    private static HashMap<String,Integer> randomProducts(){
+        HashMap<String,Integer> linkedList = new HashMap<String,Integer>();
         int sizeOfList = (int)(Math.random()*20) + 1;
         for(int i = 0 ; i < sizeOfList; i++){
             int current = ((int)(Math.random()*10)) % Product.values().length;
             String product = Product.values()[current].getProduct();
-            linkedList.add(product);
+            if(!linkedList.containsKey(product)){
+                linkedList.put(product,1);
+            }else{
+                int size = linkedList.get(product);
+                linkedList.put(product,++size);
+            }
         }
         return linkedList;
     }

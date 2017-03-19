@@ -1,7 +1,9 @@
 package bsuir.by.labWord2.thread;
 
+import bsuir.by.labWord2.gui.UpdateForm;
 import bsuir.by.labWord2.modules.Ship.Ship;
 import bsuir.by.labWord2.modules.Stock.Stock;
+import org.eclipse.swt.widgets.Display;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -18,17 +20,19 @@ public class PortPool{
     private final Semaphore semaphore = new Semaphore(POOL_SIZE, true);
     private volatile QueueShips queueShips;
     private volatile Stock stock;
+    protected volatile UpdateForm updateForm;
+
+    public PortPool(QueueShips queueShips, Stock stock, UpdateForm updateForm) {
+        this.queueShips = queueShips;
+        this.stock = stock;
+        this.updateForm = updateForm;
+    }
 
     public PortPool() {
 
     }
 
     public PortPool(QueueShips queueShips, Stock stock) {
-        try {
-            sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         this.queueShips = queueShips;
         this.stock = stock;
     }
@@ -53,12 +57,14 @@ public class PortPool{
     }
 
     public void startPier(){
+
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         for(int i  = 0; i < POOL_SIZE; i++){
 
             Pier pier = new Pier(this,stock);
-            pier.setPierName("pier №" + Integer.toString(i + 1));
-            service.scheduleAtFixedRate(pier,0,1,TimeUnit.SECONDS);
+            pier.setPierName(i + 1);
+            pier.setName("Pier" + Integer.toString(i + 1));
+            pier.start();
         }
         System.out.println(stock.getProducts());
 
