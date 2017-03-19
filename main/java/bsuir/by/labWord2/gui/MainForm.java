@@ -1,12 +1,11 @@
 package bsuir.by.labWord2.gui;
 
 import bsuir.by.labWord2.modules.Stock.Stock;
-import bsuir.by.labWord2.thread.QueueShips;
+import bsuir.by.labWord2.modules.QueueShips;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.*;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 
 /**
  * Created by Сергей on 17.03.2017.

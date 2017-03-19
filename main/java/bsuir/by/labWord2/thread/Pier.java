@@ -1,7 +1,10 @@
 package bsuir.by.labWord2.thread;
 
+import bsuir.by.labWord2.dataBase.DataBaseDriver;
 import bsuir.by.labWord2.modules.Ship.Ship;
 import bsuir.by.labWord2.modules.Stock.Stock;
+
+import java.util.Timer;
 
 /**
  * Created by Сергей on 18.03.2017.
@@ -44,10 +47,17 @@ public class Pier extends Thread {
             do {
                 ship = shipPortPool.getResource(10000);
                 int sleepTime = ship.getProducts().size() * 700;
+                long startTimer = System.currentTimeMillis();
                 stock.putShipInStock(ship);
                 shipPortPool.updateForm.addShipInPier(ship, id);
                 shipPortPool.updateForm.addProductsInStock(ship, id);
                 shipPortPool.updateForm.removeShipFromQueue(ship, id);
+                long endTimer = System.currentTimeMillis();
+                System.out.println(endTimer - startTimer);
+                if(endTimer - startTimer > ship.getTime()){
+                    shipPortPool.queueShips.addBlackList(ship);
+                    System.out.println(ship.getName() + "this ship added in BlackList");
+                }
                 sleep(sleepTime);
                 shipPortPool.updateForm.removeListAndBar(id);
                 shipPortPool.returnResource();

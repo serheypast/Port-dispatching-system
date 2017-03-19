@@ -3,10 +3,8 @@ package bsuir.by.labWord2.gui;
 import bsuir.by.labWord2.modules.Product;
 import bsuir.by.labWord2.modules.Ship.Ship;
 import bsuir.by.labWord2.modules.Stock.Stock;
-import bsuir.by.labWord2.thread.QueueShips;
-import javafx.scene.control.Tab;
+import bsuir.by.labWord2.modules.QueueShips;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.widgets.TableItem;
 
 /**

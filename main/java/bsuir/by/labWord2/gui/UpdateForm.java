@@ -5,6 +5,7 @@ import bsuir.by.labWord2.modules.Ship.Ship;
 import bsuir.by.labWord2.modules.Stock.Stock;
 import org.eclipse.core.internal.filebuffers.Progress;
 import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.TableItem;
@@ -148,5 +149,20 @@ public class UpdateForm {
                 break;
         }
         return listViewer;
+    }
+
+    public void addShipInQueue(Ship ship){
+        Display.getDefault().asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                TableItem tableItem = new TableItem(mainForm.table,SWT.NONE);
+                tableItem.setText(new String[]{
+                        ship.getName(),
+                        Integer.toString(ship.getPriority()),
+                        ship.getProducts().toString()
+                });
+                mainForm.table.redraw();
+            }
+        });
     }
 }

@@ -1,9 +1,9 @@
 package bsuir.by.labWord2.thread;
 
 import bsuir.by.labWord2.gui.UpdateForm;
+import bsuir.by.labWord2.modules.QueueShips;
 import bsuir.by.labWord2.modules.Ship.Ship;
 import bsuir.by.labWord2.modules.Stock.Stock;
-import org.eclipse.swt.widgets.Display;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -18,7 +18,7 @@ import static java.lang.Thread.sleep;
 public class PortPool{
     private final static int POOL_SIZE = 3; // размер пула
     private final Semaphore semaphore = new Semaphore(POOL_SIZE, true);
-    private volatile QueueShips queueShips;
+    protected volatile QueueShips queueShips;
     private volatile Stock stock;
     protected volatile UpdateForm updateForm;
 

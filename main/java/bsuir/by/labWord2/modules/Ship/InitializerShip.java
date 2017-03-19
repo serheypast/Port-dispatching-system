@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * Created by Сергей on 18.03.2017.
  */
 public class InitializerShip {
-    private final static int DEFAULT_TIME = 10000;
+    private final static int DEFAULT_TIME = 2000;
     private final static int DEFAULT_PRIORITY = 5;
     private static LinkedList<String> names = DataBaseDriver.getListName();
     public InitializerShip() {

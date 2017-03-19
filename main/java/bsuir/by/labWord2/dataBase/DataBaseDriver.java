@@ -1,5 +1,6 @@
 package bsuir.by.labWord2.dataBase;
 import java.sql.*;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 
@@ -44,4 +45,30 @@ public class DataBaseDriver {
             return names;
         }
     }
+
+    public static void addShipInBlackList(String name){
+        try {
+            DataBaseDriver.statmt.execute("INSERT INTO 'BlackList' ('Name')" +
+                    " VALUES ('"+name+"'); ");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static HashSet<String> getBlackListName(){
+        HashSet<String> blackList = new HashSet<String>();
+        try {
+            DataBaseDriver.resSet = DataBaseDriver.statmt.executeQuery("SELECT * FROM BlackList");
+            while(DataBaseDriver.resSet.next()){
+                blackList.add(DataBaseDriver.resSet.getString(1));
+            }
+            return blackList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return blackList;
+        }
+    }
+
+
+
 }
