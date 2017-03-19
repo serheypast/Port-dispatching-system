@@ -19,7 +19,7 @@ public class QueueShips {
 
     }
 
-    private ArrayList<Ship> getShipList(){
+    public ArrayList<Ship> getShipList(){
         return new ArrayList<Ship>(ships);
     }
 
@@ -29,7 +29,6 @@ public class QueueShips {
     }
 
     public void addShip(Ship ship){
-
         ships.put(ship);
     }
 }

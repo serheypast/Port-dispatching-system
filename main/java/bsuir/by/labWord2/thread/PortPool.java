@@ -24,6 +24,11 @@ public class PortPool{
     }
 
     public PortPool(QueueShips queueShips, Stock stock) {
+        try {
+            sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         this.queueShips = queueShips;
         this.stock = stock;
     }
@@ -53,14 +58,9 @@ public class PortPool{
 
             Pier pier = new Pier(this,stock);
             pier.setPierName("pier №" + Integer.toString(i + 1));
-            service.scheduleAtFixedRate(pier,0,10,TimeUnit.SECONDS);
+            service.scheduleAtFixedRate(pier,0,1,TimeUnit.SECONDS);
         }
         System.out.println(stock.getProducts());
-        try {
-            sleep(13000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(stock.getProducts());
+
     }
 }
