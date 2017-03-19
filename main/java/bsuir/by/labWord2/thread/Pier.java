@@ -42,16 +42,14 @@ public class Pier extends Thread {
        Ship ship = null;
         try {
             do {
-                this.setName("Pier");
-                System.out.println(this.getName() + "tut");
                 ship = shipPortPool.getResource(10000);
                 int sleepTime = ship.getProducts().size() * 700;
-                System.out.println(ship + " In pier id: " + id);
                 stock.putShipInStock(ship);
                 shipPortPool.updateForm.addShipInPier(ship, id);
                 shipPortPool.updateForm.addProductsInStock(ship, id);
                 shipPortPool.updateForm.removeShipFromQueue(ship, id);
                 sleep(sleepTime);
+                shipPortPool.updateForm.removeListAndBar(id);
                 shipPortPool.returnResource();
 
             }while (true);

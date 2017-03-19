@@ -83,7 +83,7 @@ public class MainForm {
 
         tblclmnNewColumn = new TableColumn(table, SWT.NONE);
         tblclmnNewColumn.setWidth(100);
-        tblclmnNewColumn.setText("Operation");
+        tblclmnNewColumn.setText("Priority");
 
         tblclmnSomeData = new TableColumn(table, SWT.NONE);
         tblclmnSomeData.setWidth(307);
@@ -97,8 +97,7 @@ public class MainForm {
         listViewer_1 = new ListViewer(shell, SWT.BORDER | SWT.V_SCROLL);
         List list_1 = listViewer_1.getList();
         list_1.setBounds(393, 42, 132, 81);
-        listViewer_1.add("string");
-        listViewer_1.add("string2");
+
 
         listViewer_2 = new ListViewer(shell, SWT.BORDER | SWT.V_SCROLL);
         List list_2 = listViewer_2.getList();
@@ -143,31 +142,34 @@ public class MainForm {
 
         progressBar = new ProgressBar(shell, SWT.NONE);
         progressBar.setBounds(189, 129, 132, 17);
-
+        progressBar.setMinimum(0);
+        progressBar.setMaximum(100);
 
         progressBar_1 = new ProgressBar(shell, SWT.NONE);
         progressBar_1.setBounds(393, 129, 132, 17);
-
+        progressBar_1.setMinimum(0);
+        progressBar_1.setMaximum(100);
 
         progressBar_2 = new ProgressBar(shell, SWT.NONE);
         progressBar_2.setBounds(585, 129, 132, 17);
-
+        progressBar_2.setMinimum(0);
+        progressBar_2.setMaximum(100);
 
         Label lblNewLabel_1 = new Label(shell, SWT.NONE);
         lblNewLabel_1.setAlignment(SWT.CENTER);
         lblNewLabel_1.setBackground(SWTResourceManager.getColor(SWT.COLOR_LIST_SELECTION));
         lblNewLabel_1.setBounds(189, 21, 132, 15);
 
-        lblNewLabel_1.setText("Pier \u2116 1");
+        lblNewLabel_1.setText("Pier № 1");
 
         Label lblPier = new Label(shell, SWT.NONE);
         lblPier.setAlignment(SWT.CENTER);
-        lblPier.setText("Pier \u2116 2");
+        lblPier.setText("Pier № 2");
         lblPier.setBounds(393, 21, 132, 15);
 
         Label lblPier_1 = new Label(shell, SWT.NONE);
         lblPier_1.setAlignment(SWT.CENTER);
-        lblPier_1.setText("Pier \u2116 3");
+        lblPier_1.setText("Pier № 3");
         lblPier_1.setBounds(585, 21, 132, 15);
 
         Label lblStock = new Label(shell, SWT.NONE);

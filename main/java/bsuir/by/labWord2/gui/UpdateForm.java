@@ -33,7 +33,7 @@ public class UpdateForm {
             @Override
             public void run() {
                 ProgressBar progressBar = getProgressBar(id);
-               // int sizeOfProduct = ship.getProducts().size();
+                int sizeOfProduct = ship.getProducts().size();
                 int i = 0;
                 for (String product: ship.getProducts().keySet()
                         ) {
@@ -43,7 +43,7 @@ public class UpdateForm {
                             i++;
                             int size = stock.getProducts().get(product);
                             item.setText(1, String.valueOf(size));
-                            progressBar.setSelection(1000);
+                            progressBar.setSelection((int)(((double)i)/sizeOfProduct)*100);
                             progressBar.redraw();
                             try {
                                 sleep(100);
@@ -91,11 +91,21 @@ public class UpdateForm {
                     }
                     i++;
                 }
+
+            }
+        });
+    }
+
+    public void removeListAndBar(int id){
+        Display.getDefault().asyncExec(new Runnable() {
+            @Override
+            public void run() {
                 ProgressBar progressBar = getProgressBar(id);
                 progressBar.setSelection(0);
                 progressBar.redraw();
                 ListViewer listViewer = getListViewer(id);
                 listViewer.getList().removeAll();
+                listViewer.getList().redraw();
             }
         });
     }

@@ -1,5 +1,6 @@
 package bsuir.by.labWord2.modules.Ship;
 
+import bsuir.by.labWord2.dataBase.DataBaseDriver;
 import bsuir.by.labWord2.modules.Product;
 import bsuir.by.labWord2.modules.Ship.Ship;
 
@@ -12,7 +13,7 @@ import java.util.LinkedList;
 public class InitializerShip {
     private final static int DEFAULT_TIME = 10000;
     private final static int DEFAULT_PRIORITY = 5;
-
+    private static LinkedList<String> names = DataBaseDriver.getListName();
     public InitializerShip() {
 
     }
@@ -27,12 +28,9 @@ public class InitializerShip {
     }
 
     private static String randomName(){
-        String symbols = "qwertyuiopasdfghjklzxcvbnm";
-        StringBuilder randString = new StringBuilder();
-        int count = (int)(Math.random()*10) +  4;
-        for(int i=0;i<count;i++)
-            randString.append(symbols.charAt((int)(Math.random()*symbols.length())));
-        return new String(randString);
+        String firstName = names.get((int)(Math.random()*100) % names.size());
+        String lastName = names.get((int)(Math.random()*100) % names.size());
+        return firstName + " " + lastName;
     }
 
     private static HashMap<String,Integer> randomProducts(){
