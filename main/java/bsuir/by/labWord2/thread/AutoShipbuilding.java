@@ -15,13 +15,18 @@ public class AutoShipbuilding extends Thread {
     }
 
     public AutoShipbuilding(UpdateForm updateForm, QueueShips queueShips) throws InterruptedException {
-        sleep(10000);
+
         this.updateForm = updateForm;
         this.queueShips = queueShips;
     }
 
     @Override
     public void run() {
+        try {
+            sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         do{
             Ship ship = InitializerShip.getRandomShip();
             queueShips.addShip(ship);

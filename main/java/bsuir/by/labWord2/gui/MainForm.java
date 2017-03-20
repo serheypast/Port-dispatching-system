@@ -65,6 +65,8 @@ public class MainForm {
     protected void createContents() {
         shell = new Shell();
         shell.setSize(759, 572);
+        shell.setMinimumSize(759,572);
+
         shell.setText("SWT Application");
         /*
         setStatus("dasdasd");
