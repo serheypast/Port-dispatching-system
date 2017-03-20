@@ -47,7 +47,7 @@ public class UpdateForm {
                             progressBar.setSelection((int)(((double)i)/sizeOfProduct)*100);
                             progressBar.redraw();
                             try {
-                                sleep(100);
+                                Thread.sleep(100);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -165,4 +165,7 @@ public class UpdateForm {
             }
         });
     }
+
+
+
 }

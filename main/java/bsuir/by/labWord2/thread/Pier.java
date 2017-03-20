@@ -1,6 +1,7 @@
 package bsuir.by.labWord2.thread;
 
 import bsuir.by.labWord2.dataBase.DataBaseDriver;
+import bsuir.by.labWord2.logger.AppLogger;
 import bsuir.by.labWord2.modules.Ship.Ship;
 import bsuir.by.labWord2.modules.Stock.Stock;
 
@@ -38,9 +39,9 @@ public class Pier extends Thread {
     @Override
     public void run() {
         try {
-            sleep(10000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().error(e.getMessage());
         }
        Ship ship = null;
         try {
@@ -58,15 +59,15 @@ public class Pier extends Thread {
                     shipPortPool.queueShips.addBlackList(ship);
                     System.out.println(ship.getName() + "this ship added in BlackList");
                 }
-                sleep(sleepTime);
+                Thread.sleep(sleepTime);
                 shipPortPool.updateForm.removeListAndBar(id);
                 shipPortPool.returnResource();
 
             }while (true);
             } catch(ResourсeException e){
-                e.printStackTrace();
+            AppLogger.getLogger().error(e.getMessage());
             } catch (InterruptedException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().error(e.getMessage());
         }
 
 

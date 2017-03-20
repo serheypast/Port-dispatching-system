@@ -1,5 +1,6 @@
 package bsuir.by.labWord2.modules.Stock;
 
+import bsuir.by.labWord2.logger.AppLogger;
 import bsuir.by.labWord2.modules.Ship.Ship;
 
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class Stock {
         int quantityOfProduct = products.get(product);
         if(quantityOfProduct > 0){
             products.put(product, --quantityOfProduct);
+
         }
     }
 

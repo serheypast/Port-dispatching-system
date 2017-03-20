@@ -1,6 +1,7 @@
 package bsuir.by.labWord2.thread;
 
 import bsuir.by.labWord2.gui.UpdateForm;
+import bsuir.by.labWord2.logger.AppLogger;
 import bsuir.by.labWord2.modules.QueueShips;
 import bsuir.by.labWord2.modules.Ship.InitializerShip;
 import bsuir.by.labWord2.modules.Ship.Ship;
@@ -23,18 +24,18 @@ public class AutoShipbuilding extends Thread {
     @Override
     public void run() {
         try {
-            sleep(10000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().error(e.getMessage());
         }
         do{
             Ship ship = InitializerShip.getRandomShip();
             queueShips.addShip(ship);
             updateForm.addShipInQueue(ship);
             try {
-                sleep(1500);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                AppLogger.getLogger().error(e.getMessage());
             }
         }while(true);
     }

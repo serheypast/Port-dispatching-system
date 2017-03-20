@@ -1,4 +1,6 @@
 package bsuir.by.labWord2.dataBase;
+import bsuir.by.labWord2.logger.AppLogger;
+
 import java.sql.*;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -25,9 +27,9 @@ public class DataBaseDriver {
             System.out.println(conn.isClosed()  );
             System.out.println("Connected!");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().error(e.getMessage());
         }catch (SQLException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().error(e.getMessage());
         }
     }
 
@@ -41,7 +43,7 @@ public class DataBaseDriver {
             }
             return names;
         } catch (SQLException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().error(e.getMessage());
             return names;
         }
     }
@@ -51,7 +53,7 @@ public class DataBaseDriver {
             DataBaseDriver.statmt.execute("INSERT INTO 'BlackList' ('Name')" +
                     " VALUES ('"+name+"'); ");
         } catch (SQLException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().error(e.getMessage());
         }
     }
 
@@ -64,7 +66,8 @@ public class DataBaseDriver {
             }
             return blackList;
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            AppLogger.getLogger().error(e.getMessage());
             return blackList;
         }
     }

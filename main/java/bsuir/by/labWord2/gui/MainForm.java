@@ -193,5 +193,24 @@ public class MainForm {
     }
 
 
+    public ListViewer getListViewer(int id) {
+        ListViewer listViewer;
+        switch (id){
+            case 1:
+                listViewer = this.listViewer;
+                break;
+            case 2:
+                listViewer = this.listViewer_1;
+                break;
+            case 3:
+                listViewer = this.listViewer_2;
+                break;
+            default:
+                listViewer = null;
+                break;
+        }
+        return listViewer;
+    }
+
 
 }
