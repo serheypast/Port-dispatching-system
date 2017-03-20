@@ -4,8 +4,8 @@ package bsuir.by.labWord2.run;
  * Created by Сергей on 14.03.2017.
  */
 import bsuir.by.labWord2.dataBase.DataBaseDriver;
-import bsuir.by.labWord2.gui.MainForm;
-import bsuir.by.labWord2.gui.UpdateForm;
+import bsuir.by.labWord2.gui.portForm.MainForm;
+import bsuir.by.labWord2.gui.portForm.UpdateForm;
 import bsuir.by.labWord2.logger.AppLogger;
 import bsuir.by.labWord2.logger.PortLogger;
 import bsuir.by.labWord2.modules.Ship.InitializerShip;
@@ -13,7 +13,6 @@ import bsuir.by.labWord2.modules.Stock.Stock;
 import bsuir.by.labWord2.thread.AutoShipbuilding;
 import bsuir.by.labWord2.thread.PortPool;
 import bsuir.by.labWord2.modules.QueueShips;
-import org.eclipse.swt.widgets.Display;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -25,12 +24,7 @@ import static java.lang.Thread.sleep;
 public class Main {
    public static void main(String args[]) {
         try {
-
-
-
             long startTimer = System.currentTimeMillis();
-            AppLogger.getLogger().info(new String("serega"));
-            sleep(1001);
             System.out.println(System.currentTimeMillis() - startTimer);
             DataBaseDriver.Conn();
             InitializerShip initializerShip = new InitializerShip();
@@ -41,6 +35,7 @@ public class Main {
             Stock stock = new  Stock();
 
             MainForm window = new MainForm(stock,ships);
+
             UpdateForm updateForm = new UpdateForm(window,stock);
             PortPool port = new PortPool(ships,stock,updateForm);
             AppLogger.getLogger().info(ships.getShipList());

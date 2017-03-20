@@ -1,14 +1,10 @@
-package bsuir.by.labWord2.gui;
+package bsuir.by.labWord2.gui.portForm;
 
-import bsuir.by.labWord2.modules.Product;
+import bsuir.by.labWord2.gui.dialogForm.DialogForm;
 import bsuir.by.labWord2.modules.Ship.Ship;
 import bsuir.by.labWord2.modules.Stock.Stock;
-import org.eclipse.core.internal.filebuffers.Progress;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.ProgressBar;
-import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.*;
 
 import static java.lang.Thread.sleep;
 
@@ -30,24 +26,24 @@ public class UpdateForm {
 
     public void addProductsInStock(Ship ship,int id){
         System.out.println(Thread.currentThread().getName());
-        Display.getDefault().asyncExec(new Runnable() {
+        Display.getDefault().syncExec(new Runnable() {
             @Override
             public void run() {
                 ProgressBar progressBar = getProgressBar(id);
                 int sizeOfProduct = ship.getProducts().size();
-                int i = 0;
+                int currentSize = 0;
                 for (String product: ship.getProducts().keySet()
                         ) {
-                    for (TableItem item: mainForm.table_1.getItems()
+                    for (TableItem item: mainForm.tableStock.getItems()
                          ) {
                         if (product.equals(item.getText())) {
-                            i++;
+                            currentSize++;
                             int size = stock.getProducts().get(product);
                             item.setText(1, String.valueOf(size));
-                            progressBar.setSelection((int)(((double)i)/sizeOfProduct)*100);
+                            progressBar.setSelection((int)(((double)currentSize)/sizeOfProduct)*100);
                             progressBar.redraw();
                             try {
-                                Thread.sleep(100);
+                                Thread.sleep(50);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -55,39 +51,36 @@ public class UpdateForm {
                         }
                     }
                 }
-                mainForm.table_1.redraw();
+                mainForm.tableStock.redraw();
             }
         });
     }
 
     public void addShipInPier(Ship ship,int id){
 
-        Display.getDefault().asyncExec(new Runnable() {
+        Display.getDefault().syncExec(new Runnable() {
             @Override
             public void run() {
-                ListViewer listViewer = getListViewer(id);
-                listViewer.getList().removeAll();
-                listViewer.getList().setItems(new String[]{
-                        "Name: " + ship.getName(),
-                        "Priority " + ship.getPriority(),
-                        "Duration " + ship.getTime(),
-                        "Product " + ship.getProducts().toString()
-                });
+                Table table = getTablePier(id);
+                TableItem[] items = table.getItems();
+                items[0].setText("Name: " + ship.getName());
+                items[1].setText("Type: " + ship.getType());
+                items[2].setText("Duration: " + String.valueOf(ship.getTime()));
             }
         });
     }
 
 
     public void removeShipFromQueue(Ship ship,int id){
-        Display.getDefault().asyncExec(new Runnable() {
+        Display.getDefault().syncExec(new Runnable() {
             @Override
             public void run() {
                 int i = 0;
-                for (TableItem item: mainForm.table.getItems()
+                for (TableItem item: mainForm.tableQueueShips.getItems()
                         ) {
                     if(item.getText().equals(ship.getName())){
-                        mainForm.table.remove(i);
-                        mainForm.table.redraw();
+                        mainForm.tableQueueShips.remove(i);
+                        mainForm.tableQueueShips.redraw();
                         break;
                     }
                     i++;
@@ -97,16 +90,19 @@ public class UpdateForm {
         });
     }
 
-    public void removeListAndBar(int id){
-        Display.getDefault().asyncExec(new Runnable() {
+    public void removeTablePierAndBar(int id){
+        Display.getDefault().syncExec(new Runnable() {
             @Override
             public void run() {
                 ProgressBar progressBar = getProgressBar(id);
                 progressBar.setSelection(0);
                 progressBar.redraw();
-                ListViewer listViewer = getListViewer(id);
-                listViewer.getList().removeAll();
-                listViewer.getList().redraw();
+                Table table= getTablePier(id);
+                for (TableItem item: table.getItems()
+                     ) {
+                    item.setText("");
+                }
+                table.redraw();
             }
         });
     }
@@ -116,10 +112,10 @@ public class UpdateForm {
         ProgressBar progressBar = null;
         switch (id){
             case 1:
-                progressBar = mainForm.progressBar;
+                progressBar = mainForm.progressBar_1;
                 break;
             case 2:
-                progressBar = mainForm.progressBar_1;
+                progressBar = mainForm.progressBar;
                 break;
             case 3:
                 progressBar = mainForm.progressBar_2;
@@ -132,40 +128,40 @@ public class UpdateForm {
 
 
 
-    private ListViewer getListViewer(int id){
-        ListViewer listViewer = null;
+    private Table getTablePier(int id){
+        Table table = null;
         switch (id){
             case 1:
-                listViewer = mainForm.listViewer;
+                table = mainForm.tablePier_1;
                 break;
             case 2:
-                listViewer = mainForm.listViewer_1;
+                table = mainForm.tablePier_2;
                 break;
             case 3:
-                listViewer = mainForm.listViewer_2;
+                table = mainForm.tablePier_3;
                 break;
             default:
-                listViewer = mainForm.listViewer;
+                table = null;
                 break;
         }
-        return listViewer;
+        return table;
     }
 
+
     public void addShipInQueue(Ship ship){
-        Display.getDefault().asyncExec(new Runnable() {
+        Display.getDefault().syncExec(new Runnable() {
             @Override
             public void run() {
-                TableItem tableItem = new TableItem(mainForm.table,SWT.NONE);
+                TableItem tableItem = new TableItem(mainForm.tableQueueShips,SWT.NONE);
                 tableItem.setText(new String[]{
                         ship.getName(),
                         Integer.toString(ship.getPriority()),
                         ship.getProducts().toString()
                 });
-                mainForm.table.redraw();
+                mainForm.tableQueueShips.redraw();
             }
         });
     }
-
 
 
 }

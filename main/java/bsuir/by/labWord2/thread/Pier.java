@@ -1,11 +1,8 @@
 package bsuir.by.labWord2.thread;
 
-import bsuir.by.labWord2.dataBase.DataBaseDriver;
 import bsuir.by.labWord2.logger.AppLogger;
 import bsuir.by.labWord2.modules.Ship.Ship;
 import bsuir.by.labWord2.modules.Stock.Stock;
-
-import java.util.Timer;
 
 /**
  * Created by Сергей on 18.03.2017.
@@ -60,7 +57,7 @@ public class Pier extends Thread {
                     System.out.println(ship.getName() + "this ship added in BlackList");
                 }
                 Thread.sleep(sleepTime);
-                shipPortPool.updateForm.removeListAndBar(id);
+                shipPortPool.updateForm.removeTablePierAndBar(id);
                 shipPortPool.returnResource();
 
             }while (true);

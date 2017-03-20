@@ -1,4 +1,4 @@
-package bsuir.by.labWord2.gui;
+package bsuir.by.labWord2.gui.portForm;
 
 import org.eclipse.swt.SWT;
 

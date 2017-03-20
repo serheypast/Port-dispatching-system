@@ -1,11 +1,10 @@
 package bsuir.by.labWord2.thread;
 
-import bsuir.by.labWord2.gui.UpdateForm;
+import bsuir.by.labWord2.gui.portForm.UpdateForm;
 import bsuir.by.labWord2.logger.AppLogger;
 import bsuir.by.labWord2.modules.QueueShips;
 import bsuir.by.labWord2.modules.Ship.Ship;
 import bsuir.by.labWord2.modules.Stock.Stock;
-import org.eclipse.swt.widgets.Display;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -64,9 +63,9 @@ public class PortPool{
     public void startPier(){
 
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        for(int i  = 0; i < POOL_SIZE; i++){
+        for(int i  = 1; i <= POOL_SIZE; i++){
             Pier pier = new Pier(this,stock);
-            pier.setPierName(i + 1);
+            pier.setPierName(i);
             pier.setName("Pier" + Integer.toString(i + 1));
             pier.start();
         }

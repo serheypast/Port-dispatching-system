@@ -1,6 +1,6 @@
 package bsuir.by.labWord2.thread;
 
-import bsuir.by.labWord2.gui.UpdateForm;
+import bsuir.by.labWord2.gui.portForm.UpdateForm;
 import bsuir.by.labWord2.logger.AppLogger;
 import bsuir.by.labWord2.modules.QueueShips;
 import bsuir.by.labWord2.modules.Ship.InitializerShip;

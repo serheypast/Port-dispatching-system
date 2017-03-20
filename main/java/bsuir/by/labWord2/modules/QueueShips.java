@@ -1,7 +1,6 @@
 package bsuir.by.labWord2.modules;
 
 import bsuir.by.labWord2.dataBase.DataBaseDriver;
-import bsuir.by.labWord2.gui.UpdateForm;
 import bsuir.by.labWord2.modules.Ship.Ship;
 
 import java.util.*;
@@ -36,7 +35,9 @@ public class QueueShips {
     }
 
     public void addShip(Ship ship){
-
+        if(blackList.contains(ship.getName())){
+            ship.setPriority(13);
+        }
         ships.put(ship);
     }
 

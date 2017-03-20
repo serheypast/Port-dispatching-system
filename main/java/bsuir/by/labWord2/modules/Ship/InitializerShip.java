@@ -24,6 +24,12 @@ public class InitializerShip {
         ship.setTime(DEFAULT_TIME);
         ship.setPriority(DEFAULT_PRIORITY + (int)(Math.random()*10));
         ship.setProducts(randomProducts());
+        ship.setLoadUnLoad(getRandomType());
+        if(ship.getLoadUnLoad()){
+            ship.setType("Loader");
+        }else{
+            ship.setType("Downloader");
+        }
         return ship;
     }
 
@@ -33,7 +39,7 @@ public class InitializerShip {
         return firstName + " " + lastName;
     }
 
-    private static HashMap<String,Integer> randomProducts(){
+    public static HashMap<String,Integer> randomProducts(){
         HashMap<String,Integer> linkedList = new HashMap<String,Integer>();
         int sizeOfList = (int)(Math.random()*20) + 1;
         for(int i = 0 ; i < sizeOfList; i++){
@@ -47,5 +53,13 @@ public class InitializerShip {
             }
         }
         return linkedList;
+    }
+
+    private static boolean getRandomType(){
+        if((int)(Math.random()*10)%2 == 1){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

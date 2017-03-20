@@ -11,7 +11,24 @@ public class Ship implements Comparable<Ship>{
     private int time;
     private HashMap<String,Integer> products;
     private int priority;
+    private boolean loadUnLoad;
+    private String type;
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean getLoadUnLoad() {
+        return loadUnLoad;
+    }
+
+    public void setLoadUnLoad(boolean loadUnLoad) {
+        this.loadUnLoad = loadUnLoad;
+    }
 
     public int getPriority() {
         return priority;

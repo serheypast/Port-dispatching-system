@@ -1,13 +1,12 @@
 package bsuir.by.labWord2.logger;
 
-import bsuir.by.labWord2.gui.MainForm;
+import bsuir.by.labWord2.gui.portForm.MainForm;
 import bsuir.by.labWord2.modules.QueueShips;
 import bsuir.by.labWord2.modules.Stock.Stock;
-import bsuir.by.labWord2.run.Main;
 import bsuir.by.labWord2.thread.PortPool;
-import javafx.scene.control.ListView;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
 
 /**
  * Created by Сергей on 20.03.2017.
@@ -33,11 +32,12 @@ public class PortLogger extends Thread {
             public void run() {
                 for(int i = 1; i <= PortPool.POOL_SIZE; i++) {
                     String infAboutShip = "Ship in Pier № " + String.valueOf(i);
-                    ListViewer listViewer = mainForm.getListViewer(i);
-                    for (String line: listViewer.getList().getItems()
+                    Table table = mainForm.getTablePier(i);
+                    for (TableItem item: table.getItems()
                          ) {
-                        infAboutShip += "\n"+line;
+                        infAboutShip += "\n"+item.getText();
                     }
+                    System.out.println(infAboutShip);
                     AppLogger.getLogger().info(infAboutShip);
                 }
             }

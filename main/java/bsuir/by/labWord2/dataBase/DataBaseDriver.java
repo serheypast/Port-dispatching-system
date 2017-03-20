@@ -66,7 +66,6 @@ public class DataBaseDriver {
             }
             return blackList;
         } catch (SQLException e) {
-
             AppLogger.getLogger().error(e.getMessage());
             return blackList;
         }
