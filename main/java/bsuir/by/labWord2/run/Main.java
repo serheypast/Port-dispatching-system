@@ -35,6 +35,8 @@ public class Main {
             service.scheduleWithFixedDelay(new PortLogger(stock,ships,window), 0, 5, TimeUnit.SECONDS);
             service.scheduleWithFixedDelay(new AutoShipbuilding(updateForm,ships),10000,1000,TimeUnit.MILLISECONDS);
             window.open();
+
+            
         } catch (Exception e) {
              AppLogger.getLogger().error(e.getMessage());
         }
