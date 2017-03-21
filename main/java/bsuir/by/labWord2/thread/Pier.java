@@ -44,7 +44,7 @@ public class Pier extends Thread {
         try {
             do {
                 ship = shipPortPool.getResource(10000);
-                int sleepTime = ship.getProducts().size() * 700;
+                int sleepTime = ship.getProducts().size() * 400;
                 long startTimer = System.currentTimeMillis();
                 stock.putShipInStock(ship);
                 shipPortPool.updateForm.addShipInPier(ship, id);
@@ -52,9 +52,9 @@ public class Pier extends Thread {
                 shipPortPool.updateForm.removeShipFromQueue(ship, id);
                 long endTimer = System.currentTimeMillis();
                 System.out.println(endTimer - startTimer);
-                if(endTimer - startTimer > ship.getTime()){
+                if(endTimer - startTimer > ship.getTime()) {
                     shipPortPool.queueShips.addBlackList(ship);
-                    System.out.println(ship.getName() + "this ship added in BlackList");
+                    AppLogger.getLogger().info(ship.getName() + "this ship added in BlackList");
                 }
                 Thread.sleep(sleepTime);
                 shipPortPool.updateForm.removeTablePierAndBar(id);
@@ -62,9 +62,9 @@ public class Pier extends Thread {
 
             }while (true);
             } catch(ResourсeException e){
-            AppLogger.getLogger().error(e.getMessage());
+                AppLogger.getLogger().error(e.getMessage());
             } catch (InterruptedException e) {
-            AppLogger.getLogger().error(e.getMessage());
+                 AppLogger.getLogger().error(e.getMessage());
         }
 
 

@@ -48,6 +48,9 @@ public class MainForm {
     public MainForm() {
     }
 
+    /**
+     * Open the window.
+     */
     public void open() {
         Display display = Display.getDefault();
         createContents();

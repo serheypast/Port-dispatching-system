@@ -1,10 +1,8 @@
 package bsuir.by.labWord2.modules.Stock;
 
 import bsuir.by.labWord2.logger.AppLogger;
-import bsuir.by.labWord2.logger.PortLogger;
 import bsuir.by.labWord2.modules.Ship.Ship;
 
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**

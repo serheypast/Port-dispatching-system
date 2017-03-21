@@ -12,10 +12,19 @@ import org.eclipse.swt.widgets.TableItem;
  * Created by Сергей on 18.03.2017.
  */
 public class FormInitializer {
+    /** Object who needed initialization*/
     private MainForm mainForm;
+    /** Object for stockTable initialization*/
     private Stock stock;
+    /**object for table queueShip*/
     private QueueShips ships;
 
+    /**
+     * Constructor for initialization Data
+     * @param mainForm - main form who will be initialize
+     * @param stock -   Object for stockTable initialization
+     * @param ships - object for table queueShip
+     */
     public FormInitializer(MainForm mainForm, Stock stock,QueueShips ships) {
         this.mainForm = mainForm;
         this.stock = stock;
@@ -31,6 +40,9 @@ public class FormInitializer {
         initializeTablePier();
     }
 
+    /**
+     * set initial values in Table stock
+     */
     public void setTableStock(){
         for (Product product: Product.values()
              ) {
@@ -42,8 +54,10 @@ public class FormInitializer {
         }
     }
 
+    /**
+     * set initial values in TableQueue
+     */
     public void setTableQueue(){
-
         for (Ship ship: ships.getShipList()
              ) {
             TableItem tableItem = new TableItem(mainForm.tableQueueShips    ,SWT.NONE);
@@ -55,6 +69,9 @@ public class FormInitializer {
         }
     }
 
+    /**
+     * set initial value for Different tablePier
+     */
     private void initializeTablePier(){
         Table table = mainForm.tablePier_1;
         for(int i = 0; i < 3; i++){

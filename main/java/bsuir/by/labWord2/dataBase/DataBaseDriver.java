@@ -24,8 +24,6 @@ public class DataBaseDriver {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:D:\\dataBase\\PortBase.sqlite");
             statmt = conn.createStatement();
-            System.out.println(conn.isClosed()  );
-            System.out.println("Connected!");
         } catch (ClassNotFoundException e) {
             AppLogger.getLogger().error(e.getMessage());
         }catch (SQLException e) {

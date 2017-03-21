@@ -10,7 +10,9 @@ import bsuir.by.labWord2.modules.Ship.Ship;
  * Created by Сергей on 20.03.2017.
  */
 public class AutoShipbuilding extends Thread {
+
     private UpdateForm updateForm;
+
     private QueueShips queueShips;
     public AutoShipbuilding() {
     }
@@ -23,20 +25,8 @@ public class AutoShipbuilding extends Thread {
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            AppLogger.getLogger().error(e.getMessage());
-        }
-        do{
-            Ship ship = InitializerShip.getRandomShip();
-            queueShips.addShip(ship);
-            updateForm.addShipInQueue(ship);
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                AppLogger.getLogger().error(e.getMessage());
-            }
-        }while(true);
+        Ship ship = InitializerShip.getRandomShip();
+        queueShips.addShip(ship);
+        updateForm.addShipInQueue(ship);
     }
 }
