@@ -8,8 +8,14 @@ import bsuir.by.labWord2.modules.Stock.Stock;
  * Created by Сергей on 18.03.2017.
  */
 public class Pier extends Thread {
+    /** Object class port, to access the queue and the warehouse*/
     private PortPool shipPortPool;
+    /** id of Pier*/
     private int id;
+    /**
+     * object for storing information
+     * about products in ship
+     */
     private Stock stock;
 
     public Pier(PortPool shipPortPool, Stock stock) {
@@ -20,7 +26,6 @@ public class Pier extends Thread {
     public int getPierName() {
         return id;
     }
-
 
     public void setPierName(int name) {
         this.id = name;
@@ -33,6 +38,9 @@ public class Pier extends Thread {
     public Pier() {
     }
 
+    /**
+     * The thread that receives the ship from the queue, works with them, removes it
+     */
     @Override
     public void run() {
         try {

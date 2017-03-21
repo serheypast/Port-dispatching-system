@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by Сергей on 18.03.2017.
  */
 public class Stock {
+    /** A collection that stores products (Thread safe)*/
     private ConcurrentHashMap<String,Integer> products;
 
     public Stock( ConcurrentHashMap<String,Integer> products) {
@@ -19,12 +20,23 @@ public class Stock {
         products = InitializerStock.getRandomProducts();
     }
 
+    /**
+     * Put product from ship in stock
+     * @param product - name of product
+     * @param size - quantity of product
+     */
     public void putProductInStock(String product,int size){
 
         int quantityOfProduct = products.get(product) + size;
         products.put(product,quantityOfProduct);
     }
 
+    /**
+     * Remove some product form stock
+     * @param product - name of product
+     * @param size - quantity of product
+     * @param name - Name ship who try remove product
+     */
     public void removeProductInStock(String product,int size,String name){
         int quantityOfProduct = products.get(product) - size;
         if(quantityOfProduct > 0){
@@ -37,6 +49,10 @@ public class Stock {
     }
 
 
+    /**
+     *  Method where ship load product in stock or unload from stock
+     * @param ship - Object Ship
+     */
     public void putShipInStock(Ship ship){
         if(ship.getLoadUnLoad()) {
             for (String product : ship.getProducts().keySet()
@@ -51,10 +67,19 @@ public class Stock {
             }
         }
     }
+
+    /**
+     * Get Collection of stock
+     * @return - products in stock
+     */
     public ConcurrentHashMap<String,Integer> getProducts() {
         return products;
     }
 
+    /**
+     * Set some
+     * @param products
+     */
     public void setProducts( ConcurrentHashMap products) {
         this.products = products;
     }

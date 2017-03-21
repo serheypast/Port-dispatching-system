@@ -125,6 +125,10 @@ public class DialogForm extends Dialog {
 
     }
 
+    /**
+     * Add ship in queue and update mainForm
+     * @param ship ship in Queue
+     */
     private void sendShipInQueue(Ship ship) {
 //        Display.getDefault().syncExec(new Runnable() {
 //            @Override

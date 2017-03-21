@@ -12,7 +12,12 @@ import static java.lang.Thread.sleep;
  * Created by Сергей on 19.03.2017.
  */
 public class UpdateForm {
+    /**Form who will be updated*/
     private MainForm mainForm;
+    /**
+     * object for storing information
+     * about products in ship
+     */
     private Stock stock;
 
     public UpdateForm(MainForm mainForm, Stock stock) {
@@ -24,6 +29,11 @@ public class UpdateForm {
         this.mainForm = mainForm;
     }
 
+    /**
+     * Update TableStock after ship go to Pier
+     * @param ship - The ship that is being processed by the flow
+     * @param id - id of Thread
+     */
     public void addProductsInStock(Ship ship,int id){
         System.out.println(Thread.currentThread().getName());
         Display.getDefault().syncExec(new Runnable() {
@@ -56,8 +66,12 @@ public class UpdateForm {
         });
     }
 
+    /**
+     * Update tablePier
+     * @param ship - The ship that is being processed by the flow
+     * @param id - id of Thread
+     */
     public void addShipInPier(Ship ship,int id){
-
         Display.getDefault().syncExec(new Runnable() {
             @Override
             public void run() {
@@ -71,6 +85,11 @@ public class UpdateForm {
     }
 
 
+    /**
+     * Update TableQueue after remove ship from Pier
+     * @param ship - The ship that is being processed by the flow
+     * @param id - id of Thread
+     */
     public void removeShipFromQueue(Ship ship,int id){
         Display.getDefault().syncExec(new Runnable() {
             @Override
@@ -90,6 +109,10 @@ public class UpdateForm {
         });
     }
 
+    /**
+     * Update tablePier adter remove ship in them
+     * @param id - id of Thread
+     */
     public void removeTablePierAndBar(int id){
         Display.getDefault().syncExec(new Runnable() {
             @Override
@@ -107,7 +130,11 @@ public class UpdateForm {
         });
     }
 
-
+    /**
+     * Get progress bar
+     * @param id - id of progressBar
+     * @return Progress Bar
+     */
     private ProgressBar getProgressBar(int id){
         ProgressBar progressBar = null;
         switch (id){
@@ -127,7 +154,11 @@ public class UpdateForm {
     }
 
 
-
+    /**
+     * Get table of some Pier
+     * @param id -id Of table
+     * @return Table
+     */
     private Table getTablePier(int id){
         Table table = null;
         switch (id){
@@ -147,7 +178,10 @@ public class UpdateForm {
         return table;
     }
 
-
+    /**
+     * Update tableQueue after add ship in queue
+     * @param ship - The ship that is being processed by the flow
+     */
     public void addShipInQueue(Ship ship){
         Display.getDefault().syncExec(new Runnable() {
             @Override

@@ -63,6 +63,7 @@ public class MainForm {
         }
     }
 
+
     /**
      * Create contents of the application window.
      */

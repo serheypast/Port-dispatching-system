@@ -11,13 +11,20 @@ import java.util.LinkedList;
  * Created by Сергей on 18.03.2017.
  */
 public class InitializerShip {
+    /**Const parametr time for initialize */
     private final static int DEFAULT_TIME = 2000;
+    /**Const  parametr for priority initialization*/
     private final static int DEFAULT_PRIORITY = 5;
+    /**Collection for generate some name*/
     private static LinkedList<String> names = DataBaseDriver.getListName();
     public InitializerShip() {
 
     }
 
+    /**
+     * generate random ship
+     * @return Random ship
+     */
     public static Ship getRandomShip(){
         Ship ship = new Ship();
         ship.setName(randomName());
@@ -28,17 +35,25 @@ public class InitializerShip {
         if(ship.getLoadUnLoad()){
             ship.setType("Loader");
         }else{
-            ship.setType("Downloader");
+            ship.setType("Unloader");
         }
         return ship;
     }
 
+    /**
+     * Genetare random name for ship
+     * @return Stirng nameOFShip
+     */
     private static String randomName(){
         String firstName = names.get((int)(Math.random()*100) % names.size());
         String lastName = names.get((int)(Math.random()*100) % names.size());
         return firstName + " " + lastName;
     }
 
+    /**
+     * Generate random products
+     * @return collection of products
+     */
     public static HashMap<String,Integer> randomProducts(){
         HashMap<String,Integer> linkedList = new HashMap<String,Integer>();
         int sizeOfList = (int)(Math.random()*20) + 1;
@@ -47,7 +62,7 @@ public class InitializerShip {
             String product = Product.values()[current].getProduct();
             if(!linkedList.containsKey(product)){
                 linkedList.put(product,1);
-            }else{
+            } else {
                 int size = linkedList.get(product);
                 linkedList.put(product,++size);
             }
@@ -55,6 +70,10 @@ public class InitializerShip {
         return linkedList;
     }
 
+    /**
+     * Generate random Type of ship
+     * @return Type of ship
+     */
     private static boolean getRandomType(){
         if((int)(Math.random()*10)%2 == 1){
             return true;

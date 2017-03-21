@@ -7,11 +7,17 @@ import java.util.LinkedList;
  * Created by Сергей on 17.03.2017.
  */
 public class Ship implements Comparable<Ship>{
+    /**Name of  ship */
     private String name;
+    /**Load(Unload) duration */
     private int time;
+    /**Collection of products */
     private HashMap<String,Integer> products;
+    /**Priority in queue */
     private int priority;
+    /**Type of ship(load/Unload) */
     private boolean loadUnLoad;
+    /**String name of type ship*/
     private String type;
 
     public String getType() {
@@ -84,12 +90,12 @@ public class Ship implements Comparable<Ship>{
                 "}\n";
     }
 
+    /**
+     * Method for equals for priority
+     * @param o
+     * @return
+     */
     public int compareTo(Ship o) {
-        if(o.getPriority() <= priority){
-            return 1;
-        }
-        else{
-            return -1;
-        }
+        return (o.getPriority() <= priority) ? 1 : -1;
     }
 }

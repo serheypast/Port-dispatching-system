@@ -19,6 +19,10 @@ public enum Product {
 
     private String product;
 
+    /**
+     * get String name of Product
+     * @return name of product
+     */
     public String getProduct() {
         return product;
     }
